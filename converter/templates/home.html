@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %}Home - Text to HTML Converter{% endblock %}
+
+{% block content %}
+<h1>Text to HTML Converter</h1>
+<form method="post">
+    {% csrf_token %}
+    <textarea name="input_text" rows="10" cols="50">{% if input_text %}{{ input_text }}{% endif %}</textarea><br>
+    <button type="submit">Convert</button>
+</form>
+{% if html_text %}
+    <h2>Converted HTML:</h2>
+    <div style="border: 1px solid #000; padding: 10px;">
+        {{ html_text|safe }}
+    </div>
+{% endif %}
+{% endblock %}
